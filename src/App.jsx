@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Flashcard from "./components/Flashcard";
+import Flashcard from "./Flashcard.jsx";
+import logo from "./assets/logo.png"; // Substitua pelo caminho da sua imagem
 
 function App() {
   const deck = [
@@ -22,7 +23,10 @@ function App() {
 
   return (
     <Container>
-      <Header>Zap Recall</Header>
+      <Header>
+        <Logo src={logo} alt="Logo" />
+        <Title>Zap Recall</Title>
+      </Header>
       <MainContent>
         {deck.map((card, index) => (
           <Flashcard
@@ -44,13 +48,30 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #FBFBFB;
+  justify-content: center;
+  background-color: #FB6B6B;
   min-height: 100vh;
+  width: 375px;
 `;
 
-const Header = styled.h1`
-  margin: 20px;
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+
+`;
+
+const Logo = styled.img`
+  width: 50px;
+  height: 50px;
+  color: aliceblue;
+`;
+
+const Title = styled.h1`
   color: #FF922E;
+  font-size: 24px;
 `;
 
 const MainContent = styled.div`
