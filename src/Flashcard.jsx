@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import iconeCerto from "./assets/icone_certo.png"; // Caminho correto para a imagem
-import iconeErrado from "./assets/icone_erro.png"; // Caminho correto para a imagem
-import iconeQuase from "./assets/icone_quase.png"; // Caminho correto para a imagem
-import iconePlay from "./assets/seta_play.png"; // Caminho correto para a imagem
-import iconeVirar from "./assets/seta_virar.png"; // Caminho correto para a imagem
+import iconeCerto from "./assets/icone_certo.png"; 
+import iconeErrado from "./assets/icone_erro.png"; 
+import iconeQuase from "./assets/icone_quase.png"; 
+import iconePlay from "./assets/seta_play.png"; 
+import iconeVirar from "./assets/seta_virar.png"; 
 
 export default function Flashcard({ question, answer, index, onRespond }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
-  const [status, setStatus] = useState(null); // null, "incorrect", "almost", "zap"
+  const [status, setStatus] = useState(null); 
 
   const handleFlip = () => setIsFlipped(!isFlipped);
 
@@ -17,9 +17,9 @@ export default function Flashcard({ question, answer, index, onRespond }) {
 
   const handleRespond = (response) => {
     setStatus(response);
-    setIsFlipped(false); // Retorna ao estado inicial com status atualizado
-    setHasStarted(false); // Volta para a frente inicial do cartão
-    onRespond(); // Atualiza o contador
+    setIsFlipped(false); 
+    setHasStarted(false); 
+    onRespond(); 
   };
 
   return (
@@ -109,12 +109,15 @@ const Back = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ;
+  background-color: #FFFFD4 ;
+  padding: 0px;
 `;
 
 const Answered = styled.span`
   text-decoration: ${({ status }) =>
-    status === "incorrect" ? "line-through" : "none"};
+    status === "incorrect" || status === "almost" || status === "zap"
+      ? "line-through"
+      : "none"};
   font-weight: bold;
   border-radius: 50px;
   color: ${({ status }) =>
@@ -143,6 +146,7 @@ const Actions = styled.div`
   height: 45px;
   width: 90px;
   font-size: 15px;
+  margin-bottom: 10px;
 }
 
     &:hover {
@@ -158,6 +162,7 @@ const Actions = styled.div`
   button:nth-child(2) {
     background-color: #ff922e;
     color: #fff;
+    align-items: center;
   }
 
   button:nth-child(3) {
@@ -168,13 +173,11 @@ const Actions = styled.div`
 
 const QuestionContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: center; 
+  justify-content: space-between; 
   width: 100%;
-  background-color: #FFFFFF;
-  
-  
 `;
+
 
 const ImagePlaceholder = styled.img`
   width: 20px;
